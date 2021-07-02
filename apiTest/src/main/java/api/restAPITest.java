@@ -13,12 +13,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class restAPITest {
-	@Ignore
-	public void testCode() {
-
-
 	
-	}
 	
 	@Test
 	public void postCode() {
