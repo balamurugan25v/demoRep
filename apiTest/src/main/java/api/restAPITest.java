@@ -14,8 +14,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class restAPITest {
 	
-	@Test
-	public void test() {}
+
 	
 	
 	@Test
