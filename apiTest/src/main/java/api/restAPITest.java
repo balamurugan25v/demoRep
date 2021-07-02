@@ -3,8 +3,11 @@ package api;
 import static io.restassured.RestAssured.*;
 import static io.restassured.RestAssured.given;
 
+import java.io.IOException;
+
 import org.json.simple.JSONObject;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -12,10 +15,16 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class restAPITest {
+public class restAPITest extends baseClass {
+	private static String url, name, job;
 	
-
-	
+	@Before
+	public void setup() throws IOException {
+		url=getPropertyValue("baseURL");
+		System.out.println(url);
+		name =getPropertyValue("name");
+		job=getPropertyValue("job");
+	} 
 	
 	@Test
 	public void postCode() {
@@ -25,11 +34,11 @@ public class restAPITest {
 		newConfig.header("Content-Type","application/json");
 		
 		JSONObject jsonValue = new JSONObject();
-		jsonValue.put("name", "Maaya");
-		jsonValue.put("job", "Product Analysis");
+		jsonValue.put("name", name);
+		jsonValue.put("job", job);
 		
 		newConfig.body(jsonValue.toJSONString());
-		Response postResponse =newConfig.post("https://reqres.in/api/users");
+		Response postResponse =newConfig.post(url);
 		
 		 System.out.println(postResponse.getBody().jsonPath().prettify());
 				 //body().asString());
